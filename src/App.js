@@ -7,6 +7,8 @@ function App() {
   const [formData, setFormData] = useState({
     searchText: '',
   });
+  // const API_SERVER_URL = 'http://localhost:3001';
+  const API_SERVER_URL = 'https://nikitaapp-server.onrender.com';
 
   const [responseData, setResponseData] = useState(null);
   const [accessToken, setAccessToken] = useState(null);
@@ -22,9 +24,11 @@ function App() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    let url = `http://localhost:3001/api/getProducts`;
+    // let url = `http://localhost:3001/api/getProducts`;
+    let url = `${API_SERVER_URL}/api/getProducts`;
     if (searchType === 'product') {
-      url = `http://localhost:3001/api/getProduct`;
+      // url = `http://localhost:3001/api/getProduct`;
+      url = `${API_SERVER_URL}/api/getProduct`;
     }
 
     try {
@@ -46,9 +50,7 @@ function App() {
       // Function to fetch the access token from the API
       const fetchAccessToken = async () => {
         try {
-          const url = 'http://localhost:3001/api/getToken';
-
-          const token = await axios.post(url)
+          const token = await axios.post(`${API_SERVER_URL}/api/getToken`)
             .then((response) => {
               // Handle the response here
               console.log('Response:', response.data);
