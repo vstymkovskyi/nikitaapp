@@ -124,12 +124,16 @@ function App() {
               )}
 
               <div className="container-contact100-form-btn">
-                <div className="wrap-contact100-form-btn">
-                  <div className="contact100-form-bgbtn"></div>
-                  <button className="contact100-form-btn">
-                    <span>Submit</span>
-                  </button>
-                </div>
+                {accessToken ? (
+                  <div className="wrap-contact100-form-btn">
+                    <div className="contact100-form-bgbtn"></div>
+                    <button className="contact100-form-btn" type="submit" disabled={!accessToken}>
+                      <span>Submit</span>
+                    </button>
+                  </div>
+                ) : (
+                  <div>Receiving access token, please wait.</div>
+                )}
               </div>
             </form>
           </div>
