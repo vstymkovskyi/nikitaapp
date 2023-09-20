@@ -37,11 +37,16 @@ function App() {
         productID: formData.searchText
       });
 
-      setResponseData(response.data);
+      setResponseData(response?.data || null);
     } catch (error) {
-      console.error('Error:', error);
       setResponseData(null);
-      setError(error.response.data.errors[0].error);
+      if (error.response.data?.errors) {
+        setError(error.response.data.errors[0].error);
+      } else if (error.response.data) {
+        setError(error.response.data.error);
+      } else {
+        setError('Server error');
+      }
     }
   };
 
